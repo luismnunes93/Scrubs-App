@@ -32,11 +32,21 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/pub_date"
+        android:id="@+id/test"
+        android:text="test!!!!!!!!"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/thumbnail"
         android:layout_below="@id/question_text"
+        android:layout_alignParentBottom="true"/>
+
+
+    <TextView
+        android:id="@+id/pub_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/thumbnail"
+        android:layout_below="@id/test"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
