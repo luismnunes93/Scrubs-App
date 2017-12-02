@@ -27,8 +27,8 @@ import java.util.List;
 
 import pt.ulisboa.tecnico.cmov.scrubs.adapters.QuestionsAdapter;
 import pt.ulisboa.tecnico.cmov.scrubs.decorators.MyDividerItemDecoration;
-import pt.ulisboa.tecnico.cmov.scrubs.entities.AppDatabase;
-import pt.ulisboa.tecnico.cmov.scrubs.entities.QuestionEntity;
+import pt.ulisboa.tecnico.cmov.scrubs.db.AppDatabase;
+import pt.ulisboa.tecnico.cmov.scrubs.db.entity.QuestionEntity;
 import pt.ulisboa.tecnico.cmov.scrubs.fetch.SearchQuestionApi;
 import pt.ulisboa.tecnico.cmov.scrubs.listeners.RecyclerTouchListener;
 import pt.ulisboa.tecnico.cmov.scrubs.models.Question;
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final String API_BASE_URL = "http://192.168.1.81:8000/polls/";
 
-    //private List<Question> questionList = new ArrayList<>();
     private List<Question> questions = new ArrayList<>();
     private RecyclerView recyclerView;
     private QuestionsAdapter mAdapter;
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                setCache();
+                //setCache();
             }
         });
 
@@ -137,9 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
                     List<Question> questionsAux = Arrays.asList(response.body());
 
-                    for(Question question : questionsAux){
-                        questions.add(question);
-                    }
+                    questions.addAll(questionsAux);
 
                     mAdapter.notifyDataSetChanged();
 
@@ -149,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<Question[]> call, Throwable t) {
-                getCache();
+                //getCache();
                 t.printStackTrace();
             }
         });
