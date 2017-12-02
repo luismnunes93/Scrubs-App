@@ -32,6 +32,7 @@ import pt.ulisboa.tecnico.cmov.scrubs.db.entity.QuestionEntity;
 import pt.ulisboa.tecnico.cmov.scrubs.fetch.SearchQuestionApi;
 import pt.ulisboa.tecnico.cmov.scrubs.listeners.RecyclerTouchListener;
 import pt.ulisboa.tecnico.cmov.scrubs.models.Question;
+import pt.ulisboa.tecnico.cmov.scrubs.Endpoints;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.GsonConverterFactory;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    private static final String API_BASE_URL = "http://192.168.1.81:8000/polls/";
+
 
     private List<Question> questions = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -79,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 Question movie = questions.get(position);
-                Toast.makeText(getApplicationContext(), movie.getQuestion_text() + " is selected!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), movie.getName() + " is selected!", Toast.LENGTH_SHORT).show();
 
 
                 Context context = getApplicationContext();
                 Intent intent = new Intent(context, ScrubDetailsActivity.class);
-                intent.putExtra("QUESTION_TEXT", questions.get(position).getQuestion_text());
+                intent.putExtra("QUESTION_TEXT", questions.get(position).getName());
                 intent.putExtra("PUB_DATE", questions.get(position).getPub_date());
                 intent.putExtra("THUMBNAIL", questions.get(position).getThumbnail());
                 startActivity(intent);
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "initiateQuestionApi");
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
+                .baseUrl(Endpoints.POLL_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         SearchQuestionApi api = retrofit.create(SearchQuestionApi.class);
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 List<QuestionEntity> questionsEntities = db.questionDao().getAll();
 
                 for(QuestionEntity questionEntity: questionsEntities){
-                    Question question = new Question (questionEntity.getQuestion_text(), questionEntity.getPub_date(), questionEntity.getThumbnail());
+                    Question question = new Question (questionEntity.getName(), questionEntity.getPub_date(), questionEntity.getThumbnail());
                     questions.add(question);
 
                     mAdapter.notifyDataSetChanged();
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             public void run() {
                 for(Question question: questions) {
-                    QuestionEntity questionEntity = new QuestionEntity(question.getQuestion_text(), question.getPub_date(), question.getThumbnail());
+                    QuestionEntity questionEntity = new QuestionEntity(question.getName(), question.getPub_date(), question.getThumbnail());
                     db.questionDao().insertUsers(questionEntity);
                 }
             }

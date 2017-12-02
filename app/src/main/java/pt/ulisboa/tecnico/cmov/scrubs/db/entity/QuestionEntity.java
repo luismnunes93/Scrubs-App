@@ -19,8 +19,8 @@ public class QuestionEntity {
     @ColumnInfo(name = "userid")
     private String uid;
 
-    @ColumnInfo(name = "question_text")
-    private String question_text;
+    @ColumnInfo(name = "name")
+    private String name;
 
     @ColumnInfo(name = "pub_date")
     private String pub_date;
@@ -29,9 +29,9 @@ public class QuestionEntity {
     private String thumbnail;
 
 
-    public QuestionEntity(String question_text, String pub_date, String thumbnail){
+    public QuestionEntity(String name, String pub_date, String thumbnail){
         this.uid = UUID.randomUUID().toString();
-        this.question_text = question_text;
+        this.name = name;
         this.pub_date = pub_date;
         this.thumbnail = thumbnail;
     }
@@ -40,8 +40,8 @@ public class QuestionEntity {
         return this.uid;
     }
 
-    public String getQuestion_text(){
-        return this.question_text;
+    public String getName(){
+        return this.name;
     }
 
     public String getPub_date(){
@@ -52,8 +52,8 @@ public class QuestionEntity {
         return this.thumbnail;
     }
 
-    public void setQuestion_text(String question_text){
-        this.question_text = question_text;
+    public void setName(String question_text){
+        this.name = name;
     }
 
     public void setPub_date(String pub_date){

@@ -57,7 +57,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Question question = questionListFiltered.get(position);
-        holder.question_text.setText(question.getQuestion_text());
+        holder.question_text.setText(question.getName());
         holder.pub_date.setText(question.getPub_date());
 
 
@@ -85,7 +85,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.getQuestion_text().toLowerCase().contains(charString.toLowerCase()) || row.getPub_date().contains(charSequence)) {
+                        if (row.getName().toLowerCase().contains(charString.toLowerCase()) || row.getPub_date().contains(charSequence)) {
                             filteredList.add(row);
                         }
                     }

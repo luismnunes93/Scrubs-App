@@ -5,7 +5,7 @@ package pt.ulisboa.tecnico.cmov.scrubs.models;
  */
 
 public class Question {
-    private String question_text;
+    private String name;
     private String pub_date;
     private String thumbnail;
 
@@ -14,15 +14,15 @@ public class Question {
       
     }
 
-    public Question(String question_text, String pub_date, String thumbnail){
-        this.question_text = question_text;
+    public Question(String name, String pub_date, String thumbnail){
+        this.name = name;
         this.pub_date = pub_date;
         this.thumbnail = thumbnail;
     }
 
 
-    public String getQuestion_text(){
-        return this.question_text;
+    public String getName(){
+        return this.name;
     }
 
     public String getPub_date(){
@@ -33,8 +33,8 @@ public class Question {
         return this.thumbnail;
     }
 
-    public void setQuestion_text(String question_text){
-        this.question_text = question_text;
+    public void setName(String question_text){
+        this.name = question_text;
     }
 
     public void setPub_date(String pub_date){
