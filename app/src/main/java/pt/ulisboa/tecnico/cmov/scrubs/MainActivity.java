@@ -32,7 +32,6 @@ import pt.ulisboa.tecnico.cmov.scrubs.db.entity.QuestionEntity;
 import pt.ulisboa.tecnico.cmov.scrubs.fetch.SearchQuestionApi;
 import pt.ulisboa.tecnico.cmov.scrubs.listeners.RecyclerTouchListener;
 import pt.ulisboa.tecnico.cmov.scrubs.models.Question;
-import pt.ulisboa.tecnico.cmov.scrubs.Endpoints;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.GsonConverterFactory;
